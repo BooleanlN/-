@@ -27,7 +27,6 @@ def login():
             res['code'] = 1
             res['msg'] = "login success"
             sessionId = str(uuid.uuid1())
-            session[sessionId] = username
             res['data'] = {"session": sessionId}
         else:
             res['code'] = -1
@@ -59,6 +58,7 @@ def registe():
     """
     username = request.form.get('username')
     password = request.form.get('password')
+    print(username,password)
     user = User.query.filter_by(username=username).first()
     payload = {}
     if user is None:
